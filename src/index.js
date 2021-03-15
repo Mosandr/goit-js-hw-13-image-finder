@@ -29,13 +29,13 @@ function onQueryInput(event) {
   event.preventDefault();
   resetGallery();
   apiService.resetPage();
+  hideLoadMorebtn();
   apiService.searchQuery = event.target.value;
   apiService.fetchImages().then(onFetchSucces).catch(onFetchError);
 }
 
 function onFetchSucces(data) {
   if (data.length === 0) {
-    hideLoadMorebtn();
     onFetchError();
     return;
   }
@@ -50,15 +50,16 @@ function onFetchError() {
   });
 }
 
-async function onLoadMore(event) {
+function onLoadMore(event) {
   const y = refs.gallery.clientHeight + 30;
-  console.dir(y);
-  await apiService.fetchImages().then(onFetchSucces).catch(onFetchError);
-  window.scrollTo({
-    top: y,
-    left: 100,
-    behavior: 'smooth',
-  });
+  apiService.fetchImages().then(onFetchSucces).catch(onFetchError);
+  setTimeout(() => {
+    window.scrollTo({
+      top: y,
+      left: 100,
+      behavior: 'smooth',
+    });
+  }, 20);
 }
 
 function appendImagesCards(listMarkup) {
@@ -84,4 +85,5 @@ function showLoadMorebtn() {
 
 function hideLoadMorebtn() {
   refs.loadMoreBtn.classList.add('hide');
+  console.log('Hide');
 }
