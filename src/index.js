@@ -1,26 +1,15 @@
 import './styles.css';
+import './css/modal.scss';
 import { error } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 import ApiService from './js/apiService';
-import searchFormTemplate from './templates/searchFormTemplate.hbs';
-import imagesGalleryTemplate from './templates/imagesGalleryTemplate.hbs';
 import imageCardTemplate from './templates/imageCardTemplate.hbs';
-import loadMoreBtnTemplate from './templates/loadMoreBtnTemplate.hbs';
+import refs from './js/refs';
+import createAndShowModal from './js/image-modal';
 const debounce = require('lodash.debounce');
 
 const apiService = new ApiService();
-
-const refs = {
-  bodyRef: document.querySelector('BODY'),
-};
-
-refs.bodyRef.insertAdjacentHTML('afterbegin', searchFormTemplate());
-refs.bodyRef.insertAdjacentHTML('beforeend', imagesGalleryTemplate());
-refs.bodyRef.insertAdjacentHTML('beforeend', loadMoreBtnTemplate());
-refs.searchForm = document.querySelector('.search-form');
-refs.gallery = document.querySelector('.gallery');
-refs.loadMoreBtn = document.querySelector('.load-more-btn');
 
 refs.searchForm.addEventListener('input', debounce(onQueryInput, 500));
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
@@ -40,6 +29,7 @@ function onFetchSucces(data) {
     return;
   }
   appendImagesCards(markupCardsList(data));
+  addOnImageClickListener();
   showLoadMorebtn();
 }
 
@@ -50,9 +40,9 @@ function onFetchError() {
   });
 }
 
-function onLoadMore(event) {
+async function onLoadMore(event) {
   const y = refs.gallery.clientHeight + 30;
-  apiService.fetchImages().then(onFetchSucces).catch(onFetchError);
+  await apiService.fetchImages().then(onFetchSucces).catch(onFetchError);
   setTimeout(() => {
     window.scrollTo({
       top: y,
@@ -85,5 +75,20 @@ function showLoadMorebtn() {
 
 function hideLoadMorebtn() {
   refs.loadMoreBtn.classList.add('hide');
-  console.log('Hide');
+}
+
+function addOnImageClickListener() {
+  refs.gallery.addEventListener('click', onImageClickHandler);
+}
+
+function onImageClickHandler(event) {
+  if (event.target.nodeName === 'IMG') {
+    const clickedImg = event.target;
+    const imageData = {
+      src: clickedImg.dataset.largeimageurl,
+      width: 1280,
+      alt: clickedImg.alt,
+    };
+    createAndShowModal(imageData);
+  }
 }
