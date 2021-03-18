@@ -23,9 +23,18 @@ p {
   margin: 0px;
 }
 
+.is-hidden {
+  display: none;
+}
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
 .search-form > input {
   min-width: 700px;
   min-height: 40px;
+  margin-right: 10px;
   border: grey solid 3px;
   border-radius: 5px;
   font-size: 20px;

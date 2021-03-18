@@ -70,4 +70,19 @@ $basicLightbox__timing: ease !default;
 		transform: scale(1);
 	}
 
+	& .next{
+		position: absolute;
+		top: 50%;
+		right: -50px;
+	}
+
+	& .prev{
+		position: absolute;
+		top: 50%;
+		left: -50px;
+	}
+
+
+
+
 }
