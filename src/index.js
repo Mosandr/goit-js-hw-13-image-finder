@@ -38,7 +38,7 @@ function onFetchSucces(data) {
     return;
   }
   ui.appendImagesCards(data);
-  setMasoryLayout();
+  setMasonryLayout();
 }
 
 function onFetchError() {
@@ -68,7 +68,7 @@ function setIntersectionObserver() {
   io.observe(ui.refs.onLoadTarget);
 }
 
-function setMasoryLayout() {
+function setMasonryLayout() {
   imagesLoaded(grid, function () {
     // init Isotope after all images have loaded
     msnry = new Masonry(grid, {
@@ -76,6 +76,5 @@ function setMasoryLayout() {
       columnWidth: '.grid-sizer',
       percentPosition: true,
     });
-    console.log('Masonry!');
   });
 }
