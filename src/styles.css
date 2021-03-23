@@ -1,11 +1,10 @@
-html {
+* {
   box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+/* force scrollbar */
+html {
+  overflow-y: scroll;
 }
 
 body {
@@ -13,10 +12,6 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-align: center;
-}
-
-ul {
-  list-style: none;
 }
 
 p {
@@ -29,6 +24,7 @@ p {
 .search-form {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .search-form > input {
@@ -40,54 +36,62 @@ p {
   font-size: 20px;
 }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
+/* ---- GRID ---- */
+.grid {
+  background: #ddd;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 25%;
+}
+
+.grid-item {
+  float: left;
+  border: 3px solid grey;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---- END GRID ---- */
+.gallery__item .stats {
+  display: inline-flex;
+  padding: 2px 10px;
+  position: absolute;
+  border-radius: 10px;
+  background: #e5e3e3;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   justify-content: center;
-  margin: 0px;
-  padding: 20px;
+  font-size: 8px;
+  line-height: 1;
 }
 
-.gallery__item {
-  margin: 2px;
-}
-
-.photo-card {
-  padding: 5px;
-  background-color: gainsboro;
-  border-radius: 4px;
-}
-
-.photo-card > img {
-  width: 450px;
-  height: 300px;
-  object-fit: cover;
-}
-
-.photo-card .stats {
-  display: flex;
-  justify-content: center;
-  font-size: 10px;
-}
-
-.photo-card .stats-item:not(:last-child) {
+.stats-item:not(:last-child) {
   margin-right: 5px;
 }
+
+.stats-item > span {
+  display: block;
+  height: 20px;
+  margin-bottom: 3px;
+}
+
 .material-icons {
   color: gray;
-}
-
-.load-more-btn {
-  background: grey;
-  border-radius: 4px;
-  border-color: transparent;
-  color: #fff;
-  height: 40px;
-  padding: 5px 20px;
-}
-
-.load-more-btn.hide {
-  display: none;
 }
 
 [data-set='targetForIO'] {

@@ -54,6 +54,8 @@
     "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
     "handlebars": "^4.7.6",
-    "lodash.debounce": "^4.0.8"
+    "imagesloaded": "^4.1.4",
+    "lodash.debounce": "^4.0.8",
+    "masonry-layout": "^4.2.2"
   }
 }
