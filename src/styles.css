@@ -59,7 +59,9 @@ p {
 }
 
 .photo-card > img {
-  height: 200px;
+  width: 450px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .photo-card .stats {
@@ -86,4 +88,10 @@ p {
 
 .load-more-btn.hide {
   display: none;
+}
+
+[data-set='targetForIO'] {
+  width: 1px;
+  height: 1px;
+  margin: 0;
 }
