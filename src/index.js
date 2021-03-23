@@ -48,7 +48,7 @@ function loadImages() {
 }
 
 function setIntersectionObserver() {
-  const options = { rootMargin: '200px' };
+  const options = { rootMargin: '400px' };
 
   const callback = entries => {
     entries.forEach(entry => {
