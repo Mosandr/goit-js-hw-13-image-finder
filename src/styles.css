@@ -36,30 +36,6 @@ p {
   font-size: 20px;
 }
 
-/* .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0px;
-  padding: 20px;
-} */
-
-/* .gallery__item {
-  margin: 2px;
-}
-
-.photo-card {
-  padding: 5px;
-  background-color: gainsboro;
-  border-radius: 4px;
-} */
-
-/* .photo-card > img {
-  width: 450px;
-  height: 300px;
-  object-fit: cover;
-} */
-
 /* ---- GRID ---- */
 .grid {
   background: #ddd;
