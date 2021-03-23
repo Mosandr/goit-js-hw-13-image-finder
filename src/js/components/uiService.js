@@ -1,6 +1,6 @@
 import searchFormTemplate from '../../templates/searchFormTemplate.hbs';
 import imagesGalleryTemplate from '../../templates/imagesGalleryTemplate.hbs';
-import loadMoreBtnTemplate from '../../templates/loadMoreBtnTemplate.hbs';
+
 import imageCardTemplate from '../../templates/imageCardTemplate.hbs';
 import LoadBtn from './loadBtn';
 import createAndShowModal from '../components/image-modal';
@@ -8,7 +8,7 @@ import createAndShowModal from '../components/image-modal';
 export default class UiService {
   constructor() {
     this.refs = this.getRefs();
-    this.loadMoreBtn = this.getLoadMoreButton();
+
     this.searchBtn = this.getSearchButton();
     this.addOnImageClickListener();
   }
@@ -25,20 +25,12 @@ export default class UiService {
     refs.bodyRef.insertAdjacentHTML('beforeend', imagesGalleryTemplate());
     refs.gallery = document.querySelector('.gallery');
 
-    refs.bodyRef.insertAdjacentHTML('beforeend', loadMoreBtnTemplate());
-    refs.loadMoreBtn = document.querySelector('[data-action="load-more-btn"]');
+    const targetMarkup = '<div data-set="targetForIO"></div>';
+
+    refs.bodyRef.insertAdjacentHTML('beforeend', targetMarkup);
+    refs.onLoadTarget = document.querySelector('[data-set="targetForIO"]');
 
     return refs;
-  }
-
-  getLoadMoreButton() {
-    const loadMoreBtn = new LoadBtn(
-      '[data-action="load-more-btn"]',
-      true,
-      'Load More',
-    );
-    loadMoreBtn.enable();
-    return loadMoreBtn;
   }
 
   getSearchButton() {
