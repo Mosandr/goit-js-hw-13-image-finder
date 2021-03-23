@@ -25,8 +25,6 @@ function onSearch(event) {
 
 function onFetchSucces(data) {
   ui.searchBtn.enable();
-  console.log('Fetch');
-
   if (data.length === 0) {
     onFetchError();
     return;
