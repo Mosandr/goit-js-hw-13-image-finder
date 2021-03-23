@@ -1,11 +1,10 @@
-html {
+* {
   box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+/* force scrollbar */
+html {
+  overflow-y: scroll;
 }
 
 body {
@@ -13,10 +12,6 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-align: center;
-}
-
-ul {
-  list-style: none;
 }
 
 p {
@@ -29,6 +24,7 @@ p {
 .search-form {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .search-form > input {
@@ -40,15 +36,15 @@ p {
   font-size: 20px;
 }
 
-.gallery {
+/* .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0px;
   padding: 20px;
-}
+} */
 
-.gallery__item {
+/* .gallery__item {
   margin: 2px;
 }
 
@@ -56,15 +52,46 @@ p {
   padding: 5px;
   background-color: gainsboro;
   border-radius: 4px;
-}
+} */
 
-.photo-card > img {
+/* .photo-card > img {
   width: 450px;
   height: 300px;
   object-fit: cover;
+} */
+
+/* ---- GRID ---- */
+.grid {
+  background: #ddd;
 }
 
-.photo-card .stats {
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+  border: 3px solid grey;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---- END GRID ---- */
+
+/* .photo-card .stats {
   display: flex;
   justify-content: center;
   font-size: 10px;
@@ -88,7 +115,7 @@ p {
 
 .load-more-btn.hide {
   display: none;
-}
+} */
 
 [data-set='targetForIO'] {
   width: 1px;

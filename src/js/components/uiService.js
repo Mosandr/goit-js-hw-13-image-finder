@@ -47,14 +47,17 @@ export default class UiService {
   appendImagesCards(data) {
     const markup = data.reduce(
       (acc, item) =>
-        acc + '<li class="gallery__item">' + imageCardTemplate(item) + '</li>',
+        acc +
+        '<div class="gallery__item grid-item">' +
+        imageCardTemplate(item) +
+        '</div>',
       '',
     );
     this.refs.gallery.insertAdjacentHTML('beforeend', markup);
   }
 
   resetGallery() {
-    this.refs.gallery.innerHTML = '';
+    this.refs.gallery.innerHTML = '<div class="grid-sizer"></div>';
   }
 
   addOnImageClickListener() {

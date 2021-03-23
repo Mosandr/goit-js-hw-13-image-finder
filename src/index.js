@@ -8,11 +8,18 @@ import '@pnotify/core/dist/BrightTheme.css';
 import ApiService from './js/components/apiService';
 import UiService from './js/components/uiService';
 
+const Masonry = require('masonry-layout');
+
+const imagesLoaded = require('imagesloaded');
+
 const api = new ApiService();
 const ui = new UiService();
 
 ui.refs.searchForm.addEventListener('submit', onSearch);
 setIntersectionObserver();
+
+const grid = document.querySelector('.grid');
+let msnry;
 
 function onSearch(event) {
   event.preventDefault();
@@ -25,18 +32,18 @@ function onSearch(event) {
 
 function onFetchSucces(data) {
   ui.searchBtn.enable();
-  console.log('Fetch');
-
   if (data.length === 0) {
     onFetchError();
+    console.log('On succes');
     return;
   }
-
   ui.appendImagesCards(data);
+  setMasoryLayout();
 }
 
 function onFetchError() {
   ui.searchBtn.enable();
+  console.log('On error');
   error({
     text: 'Oops! No matches found!',
     delay: 1000,
@@ -59,4 +66,16 @@ function setIntersectionObserver() {
   };
   const io = new IntersectionObserver(callback, options);
   io.observe(ui.refs.onLoadTarget);
+}
+
+function setMasoryLayout() {
+  imagesLoaded(grid, function () {
+    // init Isotope after all images have loaded
+    msnry = new Masonry(grid, {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true,
+    });
+    console.log('Masonry!');
+  });
 }
